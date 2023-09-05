@@ -5,16 +5,15 @@ import "github.com/gin-gonic/gin"
 import "api"
 import "auth"
 
-
 func main() {
-    router := gin.Default()
+	router := gin.Default()
 
-    group := router.Group("/")
+	group := router.Group("/")
 
-    authenticatedGroup := router.Group("/")
-    authenticatedGroup.Use(auth.Middleware.MiddlewareFunc())
+	authenticatedGroup := router.Group("/")
+	authenticatedGroup.Use(auth.Middleware.MiddlewareFunc())
 
-    api.AddRoutes(group, authenticatedGroup)
+	api.AddRoutes(group, authenticatedGroup)
 
-    router.Run("0.0.0.0:80")
+	router.Run("0.0.0.0:80")
 }
