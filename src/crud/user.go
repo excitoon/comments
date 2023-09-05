@@ -11,3 +11,11 @@ func GetUsers() []models.User{
 
     return users
 }
+
+func GetUserByName(name string) *models.User {
+    var user models.User
+
+    db.DB.Take(&user, "Name = ?", name)
+
+    return &user
+}

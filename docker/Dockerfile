@@ -1,9 +1,8 @@
 FROM library/golang:1.21.0
 
-COPY src /app/src
-
+WORKDIR /app/src
 ENV GOPATH=
 
-WORKDIR /app/src
+COPY src /app/src
 
-RUN go build .
+RUN go build . # TODO go get without code dependencies

@@ -9,6 +9,7 @@ create table if not exists schema.users
   name varchar not null,
   email varchar not null,
   password varchar not null,
+  is_admin boolean not null default false,
   constraint "PK_users" primary key (id),
   constraint "UQ_users_email" unique (email),
   constraint "CHK_users_email" check (email like '%@%')
