@@ -26,10 +26,10 @@ var Middleware *jwt.GinJWTMiddleware
 
 func init() {
 	middleware, err := jwt.New(&jwt.GinJWTMiddleware{
-		Realm:       realm,
-		Key:         secret,
-		Timeout:     time.Hour,
-		MaxRefresh:  time.Hour,
+		Realm:       realm,     /// TODO to config
+		Key:         secret,    /// TODO to config
+		Timeout:     time.Hour, /// TODO to config
+		MaxRefresh:  time.Hour, /// TODO to config
 		IdentityKey: identityKey,
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
 			if v, ok := data.(*models.User); ok {

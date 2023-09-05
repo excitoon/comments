@@ -1,5 +1,9 @@
 package models
 
+import "fmt"
+
+import "env"
+
 type User struct {
 	Id       int     `json:"id" gorm:"column:id"`
 	Name     string  `json:"name" gorm:"column:name"`
@@ -9,5 +13,5 @@ type User struct {
 }
 
 func (u *User) TableName() string {
-	return "schema.users"
+	return fmt.Sprintf("%s.users", env.DatabaseSchema)
 }
