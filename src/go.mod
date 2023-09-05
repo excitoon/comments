@@ -1,6 +1,6 @@
 module comments
 
-go 1.21.0
+go 1.21
 
 require (
 	github.com/gin-gonic/gin v1.9.1
@@ -9,6 +9,9 @@ require (
 )
 
 require (
+	api.v1 v0.0.0-00010101000000-000000000000 // indirect
+	crud v0.0.0-00010101000000-000000000000 // indirect
+	db v0.0.0-00010101000000-000000000000 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
@@ -40,4 +43,11 @@ require (
 	golang.org/x/text v0.13.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	models v0.0.0-00010101000000-000000000000 // indirect
 )
+
+replace api => ./api
+replace api.v1 => ./api/v1
+replace crud => ./crud
+replace db => ./db
+replace models => ./models

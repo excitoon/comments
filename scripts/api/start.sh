@@ -1,3 +1,3 @@
 #!/bin/sh
 
-./comments
+src/comments

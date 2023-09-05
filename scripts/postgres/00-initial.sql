@@ -16,7 +16,7 @@ create table if not exists schema.users
 create table if not exists schema.comments
 (
   id int not null default nextval('schema.seq_comments'::regclass),
-  user_id int not null,
+  id_user int not null,
   txt varchar not null,
   constraint "PK_comments" primary key (id)
 );

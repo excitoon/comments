@@ -7,12 +7,14 @@ services:
       context: .
     ports:
       - "8010:80"
+    working_dir: /app
     command: scripts/api/start.sh
     restart: on-failure
     env_file:
       - ./conf/.env
     volumes:
-      - .:/app
+      - ./conf:/app/conf
+      - ./scripts:/app/scripts
     depends_on:
       db:
         condition: service_healthy
