@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    ports:
+      - "8010:80"
+    command: scripts/api/start.sh
+    restart: on-failure
+    env_file:
+      - ./conf/.env
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - comments_network
+
+  db:
+    image: library/postgres:15.4
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=database
+    restart: on-failure
+    #ports:
+    #  - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "database" ]
+      interval: 5s
+      retries: 5
+    volumes:
+      - ./scripts/postgres:/docker-entrypoint-initdb.d
+    networks:
+      - comments_network
+
+networks:
+  comments_network:
+    external: false
