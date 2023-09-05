@@ -9,7 +9,7 @@ docker-compose up --build
 ### Test
 
 ```
-curl http://localhost:8010/api/v1/users
+curl http://localhost:8010/api/v1/users -H "Authorization: Bearer TOKEN"
 ```
 
 #### Log in as admin
@@ -27,5 +27,5 @@ curl http://localhost:8010/api/v1/auth -X POST -H "Content-Type: application/x-w
 ### Performance
 
 ```
-wrk http://localhost:8010/api/v1/users
+wrk http://localhost:8010/api/v1/users -H "Authorization: Bearer TOKEN"
 ```
