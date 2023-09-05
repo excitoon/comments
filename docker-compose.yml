@@ -35,7 +35,7 @@ services:
       interval: 5s
       retries: 5
     volumes:
-      - ./scripts/postgres:/docker-entrypoint-initdb.d
+      - ./scripts/db:/docker-entrypoint-initdb.d
     networks:
       - comments_network
 

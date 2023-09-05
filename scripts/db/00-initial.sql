@@ -8,6 +8,7 @@ create table if not exists schema.users
   id int not null default nextval('schema.seq_users'::regclass),
   name varchar not null,
   email varchar not null,
+  password varchar not null,
   constraint "PK_users" primary key (id),
   constraint "UQ_users_email" unique (email),
   constraint "CHK_users_email" check (email like '%@%')
