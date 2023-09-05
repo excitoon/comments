@@ -13,6 +13,8 @@ func GetUsers(c *gin.Context) {
 
 	var users = crud.GetUsers()
 
+	/// TODO pagination
+
 	/// TODO https://stackoverflow.com/questions/17306358/removing-fields-from-struct-or-hiding-them-in-json-response
 	if *currentUser.IsAdmin == false {
 		for i := range users {

@@ -68,7 +68,7 @@ func init() {
 			return user, nil
 		},
 		Unauthorized: func(c *gin.Context, code int, message string) {
-			c.JSON(code, gin.H{
+			c.IndentedJSON(code, gin.H{
 				"code":    code,
 				"message": message,
 			})

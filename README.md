@@ -12,6 +12,10 @@ docker-compose up --build
 curl http://localhost:8010/api/v1/users -H "Authorization: Bearer TOKEN"
 ```
 
+```
+curl http://localhost:8010/api/v1/comments -H "Authorization: Bearer TOKEN"
+```
+
 #### Log in as admin
 
 ```
