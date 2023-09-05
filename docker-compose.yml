@@ -28,8 +28,8 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=database
     restart: on-failure
-    #ports:
-    #  - "5432:5432"
+    ports:
+      - "5432:5432"
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "database" ]
       interval: 5s
