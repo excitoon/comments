@@ -7,16 +7,13 @@ import "github.com/gin-gonic/gin"
 import jwt "github.com/appleboy/gin-jwt/v2"
 
 import "crud"
+import "env"
 import "models"
 
 type LoginPasswordForm struct {
 	Username string `form:"username" json:"username" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
 }
-
-const realm = "test zone"
-
-var secret = []byte("secret key")
 
 const identityKey = "name"
 const emailKey = "email"
@@ -26,10 +23,10 @@ var Middleware *jwt.GinJWTMiddleware
 
 func init() {
 	middleware, err := jwt.New(&jwt.GinJWTMiddleware{
-		Realm:       realm,     /// TODO to config
-		Key:         secret,    /// TODO to config
-		Timeout:     time.Hour, /// TODO to config
-		MaxRefresh:  time.Hour, /// TODO to config
+		Realm:       env.JwtRealm,
+		Key:         env.JwtSecretKey,
+		Timeout:     env.JwtAccessTimeout,
+		MaxRefresh:  env.JwtRefreshTimeout,
 		IdentityKey: identityKey,
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
 			if v, ok := data.(*models.User); ok {

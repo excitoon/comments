@@ -2,21 +2,27 @@ package env
 
 import "os"
 import "strconv"
+import "time"
 
 import _ "github.com/joho/godotenv/autoload"
 
 var Host string
-var Port int
+var Port uint
 var Endpoint string
 
 var DatabaseHost string
-var DatabasePort int
+var DatabasePort uint
 var DatabaseUser string
 var DatabasePass string
 var DatabaseName string
 var DatabaseSchema string
 
-func getEnvString(key string, fallback string) string {
+var JwtSecretKey []byte
+var JwtRealm string
+var JwtAccessTimeout time.Duration
+var JwtRefreshTimeout time.Duration
+
+func getString(key string, fallback string) string {
 	value, ok := os.LookupEnv(key)
 
 	if !ok {
@@ -26,30 +32,35 @@ func getEnvString(key string, fallback string) string {
 	return value
 }
 
-func getEnvInt(key string, fallback int) int {
+func getUint(key string, fallback uint) uint {
 	value, ok := os.LookupEnv(key)
 
 	if !ok {
 		return fallback
 	}
 
-	intValue, err := strconv.Atoi(value)
+	uint64Value, err := strconv.ParseUint(value, 10, 64)
 	if err != nil {
 		return fallback
 	}
 
-	return intValue
+	return uint(uint64Value)
 }
 
 func init() {
-	Host = getEnvString("HOST", "0.0.0.0")
-	Port = getEnvInt("PORT", 80)
-	Endpoint = getEnvString("ENDPOINT", "/api")
+	Host = getString("HOST", "0.0.0.0")
+	Port = getUint("PORT", 80)
+	Endpoint = getString("ENDPOINT", "/api")
 
-	DatabaseHost = getEnvString("DB_HOST", "db")
-	DatabasePort = getEnvInt("DB_PORT", 5432)
-	DatabaseUser = getEnvString("DB_USER", "postgres")
-	DatabasePass = getEnvString("DB_PASS", "postgres")
-	DatabaseName = getEnvString("DB_NAME", "database")
-	DatabaseSchema = getEnvString("DB_SCHEMA", "schema")
+	DatabaseHost = getString("DB_HOST", "db")
+	DatabasePort = getUint("DB_PORT", 5432)
+	DatabaseUser = getString("DB_USER", "postgres")
+	DatabasePass = getString("DB_PASS", "postgres")
+	DatabaseName = getString("DB_NAME", "database")
+	DatabaseSchema = getString("DB_SCHEMA", "schema")
+
+	JwtSecretKey = []byte(getString("JWT_SECRET_KEY", "secret key"))
+	JwtRealm = getString("JWT_REALM", "test zone")
+	JwtAccessTimeout = time.Duration(getUint("JWT_ACCESS_TIMEOUT", 3600)) * time.Second
+	JwtRefreshTimeout = time.Duration(getUint("JWT_REFRESH_TIMEOUT", 86400)) * time.Second
 }
