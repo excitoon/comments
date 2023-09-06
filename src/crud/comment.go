@@ -10,3 +10,14 @@ func GetComments() []models.Comment {
 
 	return comments
 }
+
+func GetComment(commentId uint) *models.Comment {
+	var comment models.Comment
+
+	err := db.DB.Take(&comment, "Id = ?", commentId).Error
+	if err != nil {
+		return nil
+	}
+
+	return &comment
+}

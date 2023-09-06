@@ -11,5 +11,8 @@ func AddRoutes(group *gin.RouterGroup, authenticatedGroup *gin.RouterGroup) {
 	v1.POST("/auth", auth.Middleware.LoginHandler)
 
 	authenticatedV1.GET("/users", GetUsers)
+	authenticatedV1.GET("/user/:userId", GetUser)
+
 	authenticatedV1.GET("/comments", GetComments)
+	authenticatedV1.GET("/comment/:commentId", GetComment)
 }
