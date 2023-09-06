@@ -9,14 +9,14 @@ import "auth"
 import "env"
 
 func main() {
-	router := gin.Default()
+	engine := gin.New()
 
-	group := router.Group("/")
+	group := engine.Group("/")
 
-	authenticatedGroup := router.Group("/")
+	authenticatedGroup := engine.Group("/")
 	authenticatedGroup.Use(auth.Middleware.MiddlewareFunc())
 
 	api.AddRoutes(group, authenticatedGroup)
 
-	router.Run(fmt.Sprintf("%s:%d", env.Host, env.Port))
+	engine.Run(fmt.Sprintf("%s:%d", env.Host, env.Port))
 }
