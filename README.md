@@ -52,6 +52,14 @@ curl -v http://localhost:8010/api/v1/comment/2 -X PUT -H "Content-Type: applicat
 curl -v http://localhost:8010/api/v1/comment/2 -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjo0ODQ3NTI1OTcwLCJpc19hZG1pbiI6dHJ1ZSwibmFtZSI6IlRoZSBBZG1pbmlzdHJhdG9yIiwib3JpZ19pYXQiOjE2OTM5MjU5NzB9.BXg9ucp8Lv1IE-18q93aqpRu7FqHQQjEkbtgsj6-i1k" --data '{"txt": "Hey there from user by admin!2"}'
 ```
 
+```
+curl -v http://localhost:8010/api/v1/comment/2 -X DELETE -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjQ4NDc1MjYwMDcsImlzX2FkbWluIjpmYWxzZSwibmFtZSI6IlRoZSBVc2VyIiwib3JpZ19pYXQiOjE2OTM5MjYwMDd9.UdHFhYOgOm3UOGDRJEn3jHTAndDgwejL0rsKMIXLOlc"
+```
+
+```
+curl -v http://localhost:8010/api/v1/comment/2 -X DELETE -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjo0ODQ3NTI1OTcwLCJpc19hZG1pbiI6dHJ1ZSwibmFtZSI6IlRoZSBBZG1pbmlzdHJhdG9yIiwib3JpZ19pYXQiOjE2OTM5MjU5NzB9.BXg9ucp8Lv1IE-18q93aqpRu7FqHQQjEkbtgsj6-i1k"
+```
+
 #### Log in as admin
 
 ```

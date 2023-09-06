@@ -52,3 +52,9 @@ func UpdateCommentText(commentId uint, text string) bool {
 
 	return err == nil
 }
+
+func DeleteComment(commentId uint) bool {
+	err := db.DB.Where("Id = ?", commentId).Delete(&models.Comment{}).Error
+
+	return err == nil
+}
