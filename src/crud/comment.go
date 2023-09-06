@@ -46,3 +46,9 @@ func AddUserComment(comment *models.Comment) bool {
 
 	return err == nil
 }
+
+func UpdateCommentText(commentId uint, text string) bool {
+	err := db.DB.Model(&models.Comment{}).Where("Id = ?", commentId).Update("Text", text).Error
+
+	return err == nil
+}

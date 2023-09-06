@@ -19,4 +19,5 @@ func AddRoutes(group *gin.RouterGroup, authenticatedGroup *gin.RouterGroup) {
 
 	authenticatedV1.GET("/comments", GetComments)
 	authenticatedV1.GET("/comment/:commentId", GetComment)
+	authenticatedV1.PUT("/comment/:commentId", UpdateComment)
 }

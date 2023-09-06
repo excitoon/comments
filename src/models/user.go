@@ -5,7 +5,7 @@ import "fmt"
 import "env"
 
 type User struct {
-	Id       int     `json:"id" gorm:"column:id;primaryKey"`
+	Id       uint    `json:"id" gorm:"column:id;primaryKey"`
 	Name     string  `json:"name" gorm:"column:name"`
 	Email    string  `json:"email" gorm:"column:email"`
 	Password *string `json:"password,omitempty" gorm:"column:password"`

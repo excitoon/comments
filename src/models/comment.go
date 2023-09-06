@@ -5,8 +5,8 @@ import "fmt"
 import "env"
 
 type Comment struct {
-	Id     int    `json:"id" gorm:"column:id;primaryKey"`
-	UserId int    `json:"id_user" gorm:"column:id_user"`
+	Id     uint   `json:"id" gorm:"column:id;primaryKey"`
+	UserId uint   `json:"id_user" gorm:"column:id_user"`
 	Text   string `json:"txt" gorm:"column:txt"`
 }
 
