@@ -13,6 +13,10 @@ func AddRoutes(group *gin.RouterGroup, authenticatedGroup *gin.RouterGroup) {
 	authenticatedV1.GET("/users", GetUsers)
 	authenticatedV1.GET("/user/:userId", GetUser)
 
+	authenticatedV1.GET("/user/:userId/comments", GetUserComments)
+	authenticatedV1.GET("/user/:userId/comment/:commentId", GetUserComment)
+	authenticatedV1.POST("/user/:userId/comment", AddUserComment)
+
 	authenticatedV1.GET("/comments", GetComments)
 	authenticatedV1.GET("/comment/:commentId", GetComment)
 }
