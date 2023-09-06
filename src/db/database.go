@@ -1,7 +1,6 @@
 package db
 
 import "fmt"
-import "time"
 
 import "gorm.io/gorm"
 import "gorm.io/driver/postgres"
@@ -21,7 +20,7 @@ func init() {
 	)
 	DB, _ = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	database, _ := DB.DB()
-	database.SetMaxIdleConns(10)           /// TODO to config
-	database.SetMaxOpenConns(100)          /// TODO to config
-	database.SetConnMaxLifetime(time.Hour) /// TODO to config
+	database.SetMaxIdleConns(int(env.DatabaseMaxIdle))
+	database.SetMaxOpenConns(int(env.DatabaseMaxOpen))
+	database.SetConnMaxLifetime(env.DatabaseIdleTimeout)
 }

@@ -16,6 +16,9 @@ var DatabaseUser string
 var DatabasePass string
 var DatabaseName string
 var DatabaseSchema string
+var DatabaseMaxIdle uint
+var DatabaseMaxOpen uint
+var DatabaseIdleTimeout time.Duration
 
 var JwtSecretKey []byte
 var JwtRealm string
@@ -58,6 +61,9 @@ func init() {
 	DatabasePass = getString("DB_PASS", "postgres")
 	DatabaseName = getString("DB_NAME", "database")
 	DatabaseSchema = getString("DB_SCHEMA", "schema")
+	DatabaseMaxIdle = getUint("DB_MAX_IDLE", 10)
+	DatabaseMaxOpen = getUint("DB_MAX_OPEN", 100)
+	DatabaseIdleTimeout = time.Duration(getUint("DB_IDLE_TIMEOUT", 3600)) * time.Second
 
 	JwtSecretKey = []byte(getString("JWT_SECRET_KEY", "secret key"))
 	JwtRealm = getString("JWT_REALM", "test zone")
