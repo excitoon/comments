@@ -2,8 +2,10 @@ package api
 
 import "github.com/gin-gonic/gin"
 
-import "api.v1"
-import "env"
+import (
+	"api.v1"
+	"env"
+)
 
 func AddRoutes(group *gin.RouterGroup, authenticatedGroup *gin.RouterGroup) {
 	api := group.Group(env.Endpoint)

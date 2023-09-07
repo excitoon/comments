@@ -1,16 +1,20 @@
 package v1
 
-import "net/http"
-import "strconv"
+import (
+	"net/http"
+	"strconv"
+)
 
 import "github.com/gin-gonic/gin"
 
-import "auth"
-import "crud"
-import "models"
+import (
+	"auth"
+	"crud"
+	"models"
+)
 
 func GetComments(c *gin.Context) {
-	var comments = crud.GetComments()
+	comments := crud.GetComments()
 
 	/// TODO pagination
 
@@ -18,7 +22,7 @@ func GetComments(c *gin.Context) {
 }
 
 func GetComment(c *gin.Context) {
-	var commentIdStr = c.Param("commentId")
+	commentIdStr := c.Param("commentId")
 	commentId, err := strconv.ParseUint(commentIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -26,7 +30,7 @@ func GetComment(c *gin.Context) {
 		return
 	}
 
-	var comment = crud.GetComment(uint(commentId))
+	comment := crud.GetComment(uint(commentId))
 	if comment == nil {
 		/// TODO common error handler
 		c.IndentedJSON(http.StatusNotFound, "")
@@ -37,7 +41,7 @@ func GetComment(c *gin.Context) {
 }
 
 func GetUserComments(c *gin.Context) {
-	var userIdStr = c.Param("userId")
+	userIdStr := c.Param("userId")
 	userId, err := strconv.ParseUint(userIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -46,7 +50,7 @@ func GetUserComments(c *gin.Context) {
 		return
 	}
 
-	var comments = crud.GetUserComments(uint(userId))
+	comments := crud.GetUserComments(uint(userId))
 
 	/// TODO pagination
 
@@ -54,7 +58,7 @@ func GetUserComments(c *gin.Context) {
 }
 
 func GetUserComment(c *gin.Context) {
-	var commentIdStr = c.Param("commentId")
+	commentIdStr := c.Param("commentId")
 	commentId, err := strconv.ParseUint(commentIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -63,7 +67,7 @@ func GetUserComment(c *gin.Context) {
 		return
 	}
 
-	var userIdStr = c.Param("userId")
+	userIdStr := c.Param("userId")
 	userId, err := strconv.ParseUint(userIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -72,7 +76,7 @@ func GetUserComment(c *gin.Context) {
 		return
 	}
 
-	var comment = crud.GetUserComment(uint(userId), uint(commentId))
+	comment := crud.GetUserComment(uint(userId), uint(commentId))
 	if comment == nil {
 		/// TODO common error handler
 		c.IndentedJSON(http.StatusNotFound, "")
@@ -83,7 +87,7 @@ func GetUserComment(c *gin.Context) {
 }
 
 func AddUserComment(c *gin.Context) {
-	var userIdStr = c.Param("userId")
+	userIdStr := c.Param("userId")
 	userId, err := strconv.ParseUint(userIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -99,7 +103,7 @@ func AddUserComment(c *gin.Context) {
 		return
 	}
 
-	var currentUser = auth.Middleware.IdentityHandler(c).(*models.User)
+	currentUser := auth.Middleware.IdentityHandler(c).(*models.User)
 	if !*currentUser.IsAdmin {
 		if user.Name != currentUser.Name { /// TODO check by Id
 			/// TODO common error handler
@@ -123,7 +127,7 @@ func AddUserComment(c *gin.Context) {
 }
 
 func UpdateComment(c *gin.Context) {
-	var commentIdStr = c.Param("commentId")
+	commentIdStr := c.Param("commentId")
 	commentId, err := strconv.ParseUint(commentIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -146,7 +150,7 @@ func UpdateComment(c *gin.Context) {
 		return
 	}
 
-	var currentUser = auth.Middleware.IdentityHandler(c).(*models.User)
+	currentUser := auth.Middleware.IdentityHandler(c).(*models.User)
 	if !*currentUser.IsAdmin {
 		if user.Name != currentUser.Name { /// TODO check by Id
 			/// TODO common error handler
@@ -169,7 +173,7 @@ func UpdateComment(c *gin.Context) {
 }
 
 func DeleteComment(c *gin.Context) {
-	var commentIdStr = c.Param("commentId")
+	commentIdStr := c.Param("commentId")
 	commentId, err := strconv.ParseUint(commentIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -192,7 +196,7 @@ func DeleteComment(c *gin.Context) {
 		return
 	}
 
-	var currentUser = auth.Middleware.IdentityHandler(c).(*models.User)
+	currentUser := auth.Middleware.IdentityHandler(c).(*models.User)
 	if !*currentUser.IsAdmin {
 		if user.Name != currentUser.Name { /// TODO check by Id
 			/// TODO common error handler

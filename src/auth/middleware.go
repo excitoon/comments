@@ -1,23 +1,31 @@
 package auth
 
-import "log"
-import "time"
+import (
+	"log"
+	"time"
+)
 
-import "github.com/gin-gonic/gin"
-import jwt "github.com/appleboy/gin-jwt/v2"
+import (
+	"github.com/gin-gonic/gin"
+	jwt "github.com/appleboy/gin-jwt/v2"
+)
 
-import "crud"
-import "env"
-import "models"
+import (
+	"crud"
+	"env"
+	"models"
+)
 
 type LoginPasswordForm struct {
 	Username string `form:"username" json:"username" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
 }
 
-const identityKey = "name"
-const emailKey = "email"
-const isAdminKey = "is_admin"
+const (
+	identityKey = "name"
+	emailKey    = "email"
+	isAdminKey  = "is_admin"
+)
 
 var Middleware *jwt.GinJWTMiddleware
 
@@ -53,7 +61,7 @@ func init() {
 				return nil, jwt.ErrMissingLoginValues
 			}
 
-			var user = crud.GetUserByName(loginForm.Username)
+			user := crud.GetUserByName(loginForm.Username)
 			if user == nil {
 				return nil, jwt.ErrFailedAuthentication
 			}
@@ -76,7 +84,6 @@ func init() {
 
 		TimeFunc: time.Now,
 	})
-
 	if err != nil {
 		log.Fatal("JWT Error:" + err.Error())
 	}

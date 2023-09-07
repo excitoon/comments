@@ -4,9 +4,11 @@ import "fmt"
 
 import "github.com/gin-gonic/gin"
 
-import "api"
-import "auth"
-import "env"
+import (
+	"api"
+	"auth"
+	"env"
+)
 
 func main() {
 	engine := gin.New()

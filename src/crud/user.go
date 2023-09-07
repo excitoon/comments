@@ -1,7 +1,9 @@
 package crud
 
-import "db"
-import "models"
+import (
+	"db"
+	"models"
+)
 
 func GetUsers() []models.User {
 	var users []models.User

@@ -1,29 +1,37 @@
 package env
 
-import "os"
-import "strconv"
-import "time"
+import (
+	"os"
+	"strconv"
+	"time"
+)
 
 import _ "github.com/joho/godotenv/autoload"
 
-var Host string
-var Port uint
-var Endpoint string
+var (
+	Host     string
+	Port     uint
+	Endpoint string
+)
 
-var DatabaseHost string
-var DatabasePort uint
-var DatabaseUser string
-var DatabasePass string
-var DatabaseName string
-var DatabaseSchema string
-var DatabaseMaxIdle uint
-var DatabaseMaxOpen uint
-var DatabaseIdleTimeout time.Duration
+var (
+	DatabaseHost        string
+	DatabasePort        uint
+	DatabaseUser        string
+	DatabasePass        string
+	DatabaseName        string
+	DatabaseSchema      string
+	DatabaseMaxIdle     uint
+	DatabaseMaxOpen     uint
+	DatabaseIdleTimeout time.Duration
+)
 
-var JwtSecretKey []byte
-var JwtRealm string
-var JwtAccessTimeout time.Duration
-var JwtRefreshTimeout time.Duration
+var (
+	JwtSecretKey      []byte
+	JwtRealm          string
+	JwtAccessTimeout  time.Duration
+	JwtRefreshTimeout time.Duration
+)
 
 func getString(key string, fallback string) string {
 	value, ok := os.LookupEnv(key)

@@ -1,18 +1,22 @@
 package v1
 
-import "net/http"
-import "strconv"
+import (
+	"net/http"
+	"strconv"
+)
 
 import "github.com/gin-gonic/gin"
 
-import "auth"
-import "crud"
-import "models"
+import (
+	"auth"
+	"crud"
+	"models"
+)
 
 func GetUsers(c *gin.Context) {
-	var currentUser = auth.Middleware.IdentityHandler(c).(*models.User)
+	currentUser := auth.Middleware.IdentityHandler(c).(*models.User)
 
-	var users = crud.GetUsers()
+	users := crud.GetUsers()
 
 	/// TODO pagination
 
@@ -28,9 +32,9 @@ func GetUsers(c *gin.Context) {
 }
 
 func GetUser(c *gin.Context) {
-	var currentUser = auth.Middleware.IdentityHandler(c).(*models.User)
+	currentUser := auth.Middleware.IdentityHandler(c).(*models.User)
 
-	var userIdStr = c.Param("userId")
+	userIdStr := c.Param("userId")
 	userId, err := strconv.ParseUint(userIdStr, 10, 64)
 	if err != nil {
 		/// TODO common error handler
@@ -38,7 +42,7 @@ func GetUser(c *gin.Context) {
 		return
 	}
 
-	var user = crud.GetUser(uint(userId))
+	user := crud.GetUser(uint(userId))
 	if user == nil {
 		/// TODO common error handler
 		c.IndentedJSON(http.StatusNotFound, "")

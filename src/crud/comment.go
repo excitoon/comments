@@ -1,7 +1,9 @@
 package crud
 
-import "db"
-import "models"
+import (
+	"db"
+	"models"
+)
 
 func GetComments() []models.Comment {
 	var comments []models.Comment

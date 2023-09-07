@@ -2,8 +2,10 @@ package db
 
 import "fmt"
 
-import "gorm.io/gorm"
-import "gorm.io/driver/postgres"
+import (
+	"gorm.io/gorm"
+	"gorm.io/driver/postgres"
+)
 
 import "env"
 
