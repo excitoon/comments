@@ -77,3 +77,7 @@ curl http://localhost:8010/api/v1/auth -X POST -H "Content-Type: application/x-w
 ```
 wrk http://localhost:8010/api/v1/users -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjo0ODQ3NTI1OTcwLCJpc19hZG1pbiI6dHJ1ZSwibmFtZSI6IlRoZSBBZG1pbmlzdHJhdG9yIiwib3JpZ19pYXQiOjE2OTM5MjU5NzB9.BXg9ucp8Lv1IE-18q93aqpRu7FqHQQjEkbtgsj6-i1k"
 ```
+
+```
+hey -z 10s http://localhost:8010/api/v1/users -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjo0ODQ3NTI1OTcwLCJpc19hZG1pbiI6dHJ1ZSwibmFtZSI6IlRoZSBBZG1pbmlzdHJhdG9yIiwib3JpZ19pYXQiOjE2OTM5MjU5NzB9.BXg9ucp8Lv1IE-18q93aqpRu7FqHQQjEkbtgsj6-i1k"
+```
